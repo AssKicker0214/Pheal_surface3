@@ -1,0 +1,37 @@
+<!Doctype html>
+<html>
+<head>
+</head>
+<body>
+
+<div id="a">
+	<p>machen da sha bi</p>
+</div>
+
+<button id="btn" onclick="enable()">click me</button>
+
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	
+var buf = '';
+	function enable(){
+		buf = document.getElementById('a').innerHTML;
+		document.getElementById('a').innerHTML = '<input type="text" id='inputid' name="n">';
+		document.getElementById('btn').innerText = "save";
+		document.getElementById('btn').setAttribute("onclick", "save()");
+	}
+
+	function save(){
+		document.getElementById('a').innerHTML = buf;
+		document.getElementById('btn').setAttribute("onclick", "enable()");
+
+		var inputValue = document.getElementById('inputid').value;
+		$.ajax({url:"demo.php5",
+                        async: true, data:'inputname='+inputValue, success: (function(respond){
+				//得到后台返回的respond字符串
+
+        })})
+	}
+</script>
+</body>
+</html>
